@@ -10,7 +10,7 @@ import { UserModule } from './user/user.module';
       type: 'sqlite',
       database: 'db.sqlite',
       entities: [User],
-      synchronize: true, // apenas para estudo
+      synchronize: false,
     }),
   ],
 })
