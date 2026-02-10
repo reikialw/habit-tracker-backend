@@ -5,13 +5,13 @@ import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
+    UserModule,
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'db.sqlite',
       entities: [User],
       synchronize: true, // apenas para estudo
     }),
-    UserModule,
   ],
 })
 export class AppModule {}
