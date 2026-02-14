@@ -3,11 +3,12 @@ import { Param, Patch} from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { HabitService } from 'src/habit/habit.service';
 
 @Controller('user')
 export class UserController {
 
-    constructor(private readonly userService: UserService) {}
+    constructor(private readonly userService: UserService, private readonly habitService: HabitService) {}
 
     @Post()
     create(@Body() dto: CreateUserDto) {
@@ -25,5 +26,10 @@ export class UserController {
         @Body() dto: UpdateUserDto,
     ) {
         return this.userService.update(id, dto);
+    }
+
+    @Get(':id/habits')
+    findUserHabits(@Param('id') id: string) {
+        return this.userService.findHabits(id);
     }
 }
