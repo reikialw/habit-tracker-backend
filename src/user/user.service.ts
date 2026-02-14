@@ -30,4 +30,17 @@ export class UserService {
     }
     return user;
   }
+
+  async findHabits(userId: string) {
+    const user = await this.userRepository.findOne({
+      where: { id: userId },
+      relations: ['habits'],
+    });
+
+    if(!user) {
+      throw new NotFoundException('User not found!');
+    }
+
+    return user.habits;
+  }
 }
